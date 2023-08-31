@@ -1,0 +1,47 @@
+.node circle {
+    fill: #fff;
+    stroke: steelblue;
+    stroke-width: 3px;
+  }
+
+  .node text {
+    font: 12px sans-serif;
+  }
+
+  .link {
+    fill: none;
+    stroke: #ccc;
+    stroke-width: 2px;
+  }
+
+  .found {
+    fill: #36ff51;
+    stroke: #4eff36;
+  }
+
+  .menu {
+    position: absolute;
+    display: none;
+    z-index: 10;
+    background-color: white;
+    border: 1px solid black;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .menu li {
+    padding: 5px;
+    cursor: pointer;
+  }
+
+  .menu li:hover {
+    background-color: slateblue;
+  }
+
+  .node-popup {
+    position: absolute;
+    background-color: rgb(40, 180, 5);
+    padding: 40px;
+    border: 1px solid rgb(8, 8, 8);
+  }

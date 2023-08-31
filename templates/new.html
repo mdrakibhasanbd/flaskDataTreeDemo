@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta charset="UTF-8">
+ <title>Check Availability username with Python Flask Jquery AJAX, MySQL</title>
+ <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+ <style>
+  body {font-size:16px;}
+  #msg {font-weight:bold;padding:10px;}
+  .form-control {
+      display: block;
+      width:300px;
+      height: 25px;
+      padding: 6px 12px;
+      font-size: 14px;
+      line-height: 1.428571429;
+      color: #555;
+      background-color: #fff;
+      background-image: none;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+      box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+      -webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+      transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+  }
+  </style> 
+</head>
+
+<body>
+ <div style="margin: 10px 0 0 10px;width: 600px">
+  <h3>Check Availability username with Python Flask Jquery AJAX, MySQL</h3>
+   
+  <form id="signupform" style="padding: 10px;">
+   <fieldset>
+    <legend>Check username</legend>
+    <div>
+     <p style="padding-bottom:5px;font-weight:bold;">Username</p>
+     <input type="text" class="form-control" name="nodeName" id="value" autocomplete="off"/>
+     <div id="msg"></div>
+     <h4 id='loading' style="display:none;"><img src="{{ url_for('static', filename='img/loader.gif') }}"/> Loading..</h4>
+    </div>
+   </fieldset>
+  </form>
+ </div>
+ <script type="text/javascript">
+ $(document).ready(function() {
+  $("#value").on('input', function(e) {
+    $('#msg').hide();
+    $('#loading').show();
+    if ($('#value').val() == null || $('#value').val() == "") {
+      $('#msg').show();
+      $("#msg").html("Username is required field.").css("color", "red"); // Set the color of the message to red
+    } else {
+      $.ajax({
+        type: "POST",
+        url: "/check",
+        data: $('#signupform').serialize(),
+        dataType: "html",
+        cache: false,
+        success: function(msg) {
+          $('#msg').show();
+          $('#loading').hide();
+          $("#msg").html(msg).css("color", "green"); // Set the color of the message to green
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+          $('#ms').show();
+          $('#loading').hide();
+          $("#msg").html(textStatus + " " + errorThrown).css("color", "red"); // Set the color of the message to red
+        }
+      });
+    }
+  });
+});
+
+ </script>
+
+</body>
+</html>
